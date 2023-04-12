@@ -1,0 +1,24 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Crowdfunding
+    network: mumbai
+    source:
+      address: "0x87A7470D1918d6190E0F7996f628730fB0fbE137"
+      abi: Crowdfunding
+      startBlock: 34189491
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - crowdfunding
+      abis:
+        - name: Crowdfunding
+          file: Crowdfunding\abis\Crowdfunding.json
+      eventHandlers:
+        - event: bids(uint256,address,uint256)
+          handler: handlebids
+      file: Crowdfunding\Crowdfunding.wasm
